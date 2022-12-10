@@ -1,0 +1,115 @@
+{% extends 'base.html' %} {% block title %} Admin Page{% endblock title %} {% block body %}
+<!-- Creating Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd">
+	<div class="container-fluid">
+		<!-- Adding an icon for my website -->
+		<a class="navbar-brand" href="#"
+			><svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="30"
+				height="30"
+				fill="currentColor"
+				class="bi bi-cloud-lightning-rain-fill mx-3"
+				viewBox="0 0 16 16"
+			>
+				<path
+					d="M2.658 11.026a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316zm9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316zm-7.5 1.5a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316zm9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316zm-7.105-1.25A.5.5 0 0 1 7.5 11h1a.5.5 0 0 1 .474.658l-.28.842H9.5a.5.5 0 0 1 .39.812l-2 2.5a.5.5 0 0 1-.875-.433L7.36 14H6.5a.5.5 0 0 1-.447-.724l1-2zm6.352-7.249a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973z"
+				/>
+			</svg>
+			Weather Forecast > Admin</a
+		>
+
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+			<a
+				class="nav-link active btn btn-secondary rahul"
+				type="button"
+				aria-current="page"
+				href="http://localhost:9555/dashboard"
+			>
+				<< Go Back to Home</a
+			>
+		</div>
+	</div>
+</nav>
+<!-- Adding a form to take input from the admin -->
+<div class="d-flex justify-content-center">
+	<div class="card mt-5" style="width: 28rem">
+		<h2 class="main-heading" style="text-align: center">Add Data to the Database</h2>
+		<div class="container mt-2 d-flex justify-content-center">
+			<form action="/" method="POST">
+				<div class="row mb-3" style="white-space: nowrap">
+					<label for="citylocation" class="col col-form-label">City :</label>
+					<input type="text" class="form-control" id="cityloaction" name="cityl" />
+				</div>
+				<div class="row mb-3">
+					<label for="temperature" class="col col-form-label">Temperature :</label>
+
+					<input type="text" class="form-control" id="temperature" name="tempe" />
+				</div>
+				<div class="row mb-3">
+					<label for="pressure" class="col col-form-label">Pressure :</label>
+
+					<input type="text" class="form-control" id="pressure" name="press" />
+				</div>
+				<div class="row mb-3">
+					<label for="humidity" class="col col-form-label">Humidity :</label>
+
+					<input type="text" class="form-control" id="humidity" name="humid" />
+				</div>
+				<div class="container d-flex justify-content-center">
+					<button type="submit" class="btn btn-primary mt-3 mb-5" name="contentasap">Add Data in Database</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Adding a table to our website -->
+<div class="conatainer mt-5">
+	<h2>Recent Changes in the Database</h2>
+	<div class="container mt-4 d-flex justify-content-center">
+		<div class="w-75 p-3">
+			<table class="table table-secondary table-bordered table-hover">
+				<thead>
+					<tr class="table-dark">
+						<th scope="col">SNo</th>
+						<th scope="col">City</th>
+						<th scope="col">Temperature</th>
+						<th scope="col">Pressure</th>
+						<th scope="col">Humidity</th>
+						<th scope="col">Time</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for todo in allTodo %}
+					<tr>
+						<th scope="row">{{loop.index}}</th>
+						<td>{{todo.city}}</td>
+						<td>{{todo.temperature}}</td>
+						<td>{{todo.pressure}}</td>
+						<td>{{todo.humidity}}</td>
+						<td>{{todo.date_created}}</td>
+						<td>
+							<a href="/delete/{{todo.sno}} " type="button" class="btn btn-dark btn-sm mx-1">Delete</a>
+							<a href="/update/{{todo.sno}} " type="button" class="btn btn-success btn-sm mx-1">Update</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock body %}
